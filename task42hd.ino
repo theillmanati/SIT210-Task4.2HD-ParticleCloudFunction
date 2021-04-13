@@ -13,13 +13,13 @@ of three LEDs, like a working prototype of a remote junction's traffic
 lights.
 -------------*/
 
-// For this task our variables will be led Red, led Blue and led Green.
+// For this task our variables will be led Red, led Orange and led Green.
 
 int ledRed = D6; // Instead of writing D6 over and over again, we'll write ledRed
 // You'll need to wire a red LED to this pin.
 
-int ledBlue = D5; // Instead of writing D5 over and over again, we'll write ledBlue
-// You'll need to wire a blue LED to this pin.
+int ledOrange = D5; // Instead of writing D5 over and over again, we'll write ledOrange
+// You'll need to wire a orange LED to this pin.
 
 int ledGreen = D4; // Instead of writing D4 over and over again, we'll write ledGreen
 // You'll need to wire a green LED to this pin.
@@ -35,12 +35,12 @@ void setup() {
 	// voltage that comes from them)
 
 	pinMode(ledGreen, OUTPUT);
-	pinMode(ledBlue, OUTPUT);
+	pinMode(ledOrange, OUTPUT);
 	pinMode(ledRed, OUTPUT);
 	
     // For good measure, let's also make sure all LEDs are off when we start:
     digitalWrite(ledGreen, LOW);
-    digitalWrite(ledBlue, LOW);
+    digitalWrite(ledOrange, LOW);
     digitalWrite(ledRed, LOW);
     
 	// We are also going to declare a Particle.function so that we can turn the LED 
@@ -65,29 +65,29 @@ int ledToggle(String colour) {
     /* Particle.functions always take a string as an argument and return an integer.
     Since we can pass a string, it means that we can give the program commands on how 
     the function should be used. In this case, telling the function "green" will turn the 
-    green LED on and the other LEDs off, whilst telling the function "blue" will turn the 
-    blue LED on and the other LEDs off, and telling it "red" will turn only the red LED on.
+    green LED on and the other LEDs off, whilst telling the function "orange" will turn the 
+    orange LED on and the other LEDs off, and telling it "red" will turn only the red LED on.
     Then, the function returns a value to us to let us know what happened.
-    In this case, it will return 2 for the green LED turning on, 1 for the blue LED turning
+    In this case, it will return 2 for the green LED turning on, 1 for the orange LED turning
     on, 0 for the red LED turning on, and -1 if we received a totally bogus command that 
     didn't do anything to the LEDs.
     */
 
     if (colour=="green") {
         digitalWrite(ledGreen, HIGH);
-        digitalWrite(ledBlue, LOW);
+        digitalWrite(ledOrange, LOW);
         digitalWrite(ledRed, LOW);
         return 2;
     }
-    else if (colour=="blue") {
+    else if (colour=="orange") {
         digitalWrite(ledGreen, LOW);
-        digitalWrite(ledBlue, HIGH);
+        digitalWrite(ledOrange, HIGH);
         digitalWrite(ledRed, LOW);
         return 1;
     }
     else if (colour=="red") {
         digitalWrite(ledGreen, LOW);
-        digitalWrite(ledBlue, LOW);
+        digitalWrite(ledOrange, LOW);
         digitalWrite(ledRed, HIGH);
         return 0;
     }
